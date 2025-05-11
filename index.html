@@ -1,32 +1,41 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technical Course Links</title>
+    <title>Hacker-Style Course Links</title>
     <style>
+        body {
+            background-color: #001100;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+        }
+
         .course-links {
             max-width: 800px;
             margin: 40px auto;
             padding: 20px;
-            font-family: Arial, sans-serif;
+            border: 1px solid #00ff00;
+            box-shadow: 0 0 15px #00ff0080;
         }
 
         .course-link {
             display: block;
             padding: 15px 20px;
             margin: 10px 0;
-            color: #2c3e50;
+            color: #00ff00;
             text-decoration: none;
             font-size: 18px;
-            border-left: 4px solid transparent;
+            border-left: 4px solid #00ff00;
             transition: all 0.3s ease;
+            text-shadow: 0 0 5px #00ff00;
         }
 
         .course-link:hover {
-            background-color: #f5f6fa;
-            border-left-color: currentColor;
+            background-color: #002200;
             padding-left: 25px;
+            box-shadow: 0 0 10px #00ff0080;
         }
 
         .modal {
@@ -36,18 +45,36 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 20, 0, 0.95);
             z-index: 1000;
         }
 
         .modal-content {
-            background-color: white;
+            background-color: #001100;
             margin: 15% auto;
             padding: 25px;
             width: 70%;
             max-width: 600px;
-            border-radius: 8px;
+            border: 1px solid #00ff00;
+            box-shadow: 0 0 20px #00ff00;
             position: relative;
+            overflow: hidden;
+        }
+
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 48%,
+                #00ff0044 50%,
+                transparent 52%
+            );
+            animation: scan 4s linear infinite;
         }
 
         .close {
@@ -56,34 +83,53 @@
             top: 10px;
             font-size: 28px;
             cursor: pointer;
-            color: #7f8c8d;
+            color: #00ff00;
+            text-shadow: 0 0 5px #00ff00;
+            z-index: 2;
         }
 
         .modal-body pre {
-            background-color: #f8f9fa;
+            background-color: #000000;
             padding: 15px;
             border-radius: 5px;
             overflow-x: auto;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            position: relative;
+            z-index: 1;
         }
 
-        .course-link.c { color: #3498db; }
-        .course-link.linux { color: #e67e22; }
-        .course-link.python { color: #2ecc71; }
-        .course-link.bash { color: #9b59b6; }
+        @keyframes scan {
+            0% { transform: translateY(0) rotate(45deg); }
+            100% { transform: translateY(100%) rotate(45deg); }
+        }
+
+        .glitch {
+            animation: glitch 1s linear infinite;
+        }
+
+        @keyframes glitch {
+            2% { text-shadow: 2px 0 #ff00ff; }
+            4% { text-shadow: -2px 0 #00ffff; }
+            6% { text-shadow: 2px 0 #ff00ff; }
+            8% { text-shadow: -2px 0 #00ffff; }
+            10% { text-shadow: 0 0 transparent; }
+            100% { text-shadow: 0 0 transparent; }
+        }
     </style>
 </head>
 <body>
     <div class="course-links">
-        <a href="#" class="course-link c" onclick="showCourse('c', event)">C Programming</a>
-        <a href="#" class="course-link linux" onclick="showCourse('linux', event)">Linux Administration</a>
-        <a href="#" class="course-link python" onclick="showCourse('python', event)">Python Programming</a>
-        <a href="#" class="course-link bash" onclick="showCourse('bash', event)">Bash Scripting</a>
+        <a href="#" class="course-link" onclick="showCourse('c', event)">> C_PROGRAMMING</a>
+        <a href="#" class="course-link" onclick="showCourse('linux', event)">> LINUX_ADMIN</a>
+        <a href="#" class="course-link" onclick="showCourse('python', event)">> PYTHON_SCRIPTING</a>
+        <a href="#" class="course-link" onclick="showCourse('bash', event)">> BASH_SCRIPTING</a>
     </div>
 
     <div id="courseModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle"></h2>
+            <h2 id="modalTitle" class="glitch"></h2>
             <div class="modal-body" id="modalContent"></div>
         </div>
     </div>
@@ -91,72 +137,75 @@
     <script>
         const courseContent = {
             c: {
-                title: "C Programming",
+                title: "C_PROGRAMMING",
                 content: `
-                    <h3>Key Concepts</h3>
+                    <h3>ROOT_ACCESS_GRANTED</h3>
                     <ul>
-                        <li>Pointers and memory management</li>
-                        <li>Data structures and algorithms</li>
-                        <li>File I/O operations</li>
-                        <li>Multi-threading</li>
+                        <li>Memory manipulation</li>
+                        <li>Kernel development</li>
+                        <li>Low-level exploits</li>
+                        <li>Binary reverse engineering</li>
                     </ul>
-                    <pre><code>#include &lt;stdio.h&gt;
+                    <pre>#include &lt;stdio.h&gt;
 
 int main() {
-    // Print Hello World
-    printf("Hello, C Programmers!");
+    // Bypass security protocols
+    printf("System accessed\\n");
     return 0;
-}</code></pre>`
+}</pre>`
             },
             linux: {
-                title: "Linux Administration",
+                title: "LINUX_ADMIN",
                 content: `
-                    <h3>Essential Skills</h3>
+                    <h3>SYSTEM_OVERRIDE</h3>
                     <ul>
-                        <li>User and permission management</li>
-                        <li>Network configuration</li>
-                        <li>Package management</li>
-                        <li>Shell scripting</li>
+                        <li>Network penetration</li>
+                        <li>Log manipulation</li>
+                        <li>Rootkit detection</li>
+                        <li>Kernel module injection</li>
                     </ul>
-                    <pre># Check disk usage
-df -h
+                    <pre># Packet sniffing
+tcpdump -i eth0 -w capture.pcap
 
-# Restart service
-sudo systemctl restart nginx</pre>`
+# Hidden process
+ps -ef | grep -v '\[.*\]'</pre>`
             },
             python: {
-                title: "Python Programming",
+                title: "PYTHON_SCRIPTING",
                 content: `
-                    <h3>Core Topics</h3>
+                    <h3>AUTOMATION_TOOLS</h3>
                     <ul>
-                        <li>Object-oriented programming</li>
-                        <li>Web frameworks (Django/Flask)</li>
-                        <li>Data analysis (Pandas)</li>
-                        <li>Automation scripts</li>
+                        <li>Network scanning</li>
+                        <li>Payload generation</li>
+                        <li>Cryptography tools</li>
+                        <li>Web vulnerability testing</li>
                     </ul>
-                    <pre># List comprehension
-squares = [x**2 for x in range(10)]
-print(squares)</pre>`
+                    <pre># Port scanner
+import socket
+
+for port in range(1, 1025):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    result = sock.connect_ex(('target', port))
+    if result == 0:
+        print(f"Port {port} open")
+    sock.close()</pre>`
             },
             bash: {
-                title: "Bash Scripting",
+                title: "BASH_SCRIPTING",
                 content: `
-                    <h3>Key Components</h3>
+                    <h3>SHELL_OVERRIDE</h3>
                     <ul>
-                        <li>Command-line automation</li>
-                        <li>Conditional statements</li>
-                        <li>Loop structures</li>
-                        <li>Process management</li>
+                        <li>Privilege escalation</li>
+                        <li>Log cleaning</li>
+                        <li>Backdoor maintenance</li>
+                        <li>Network mapping</li>
                     </ul>
                     <pre>#!/bin/bash
 
-# Simple countdown
-for i in {5..1}
-do
-    echo "$i..."
-    sleep 1
-done
-echo "Liftoff!"</pre>`
+# Stealth port scan
+for ip in {1..254}; do
+    nmap -sS -T4 192.168.1.$ip &
+done</pre>`
             }
         };
 
@@ -185,6 +234,11 @@ echo "Liftoff!"</pre>`
         // Close with ESC key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeModal();
+        });
+
+        // Terminal-like typing effect
+        document.querySelectorAll('.course-link').forEach(link => {
+            link.innerHTML = link.innerHTML.replace(/>/g, '<span class="blink">_</span>');
         });
     </script>
 </body>
