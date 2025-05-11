@@ -3,29 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technical Courses</title>
+    <title>Technical Course Links</title>
     <style>
-        .course-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
+        .course-links {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
         }
 
-        .course-card {
-            background: #2c3e50;
-            color: white;
-            padding: 25px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+        .course-link {
+            display: block;
+            padding: 15px 20px;
+            margin: 10px 0;
+            color: #2c3e50;
+            text-decoration: none;
+            font-size: 18px;
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
         }
 
-        .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        .course-link:hover {
+            background-color: #f5f6fa;
+            border-left-color: currentColor;
+            padding-left: 25px;
         }
 
         .modal {
@@ -35,70 +36,48 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.5);
             z-index: 1000;
-            animation: modalFade 0.3s;
         }
 
         .modal-content {
-            background: #34495e;
-            color: white;
-            margin: 10% auto;
-            padding: 30px;
-            width: 80%;
-            max-width: 700px;
-            border-radius: 10px;
+            background-color: white;
+            margin: 15% auto;
+            padding: 25px;
+            width: 70%;
+            max-width: 600px;
+            border-radius: 8px;
             position: relative;
         }
 
         .close {
             position: absolute;
-            right: 25px;
-            top: 15px;
-            font-size: 30px;
+            right: 20px;
+            top: 10px;
+            font-size: 28px;
             cursor: pointer;
-            color: #ecf0f1;
+            color: #7f8c8d;
         }
 
         .modal-body pre {
-            background: #2c3e50;
+            background-color: #f8f9fa;
             padding: 15px;
             border-radius: 5px;
             overflow-x: auto;
         }
 
-        .course-card.c { background: #3498db; }
-        .course-card.linux { background: #e67e22; }
-        .course-card.python { background: #2ecc71; }
-        .course-card.bash { background: #9b59b6; }
-
-        @keyframes modalFade {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        .course-link.c { color: #3498db; }
+        .course-link.linux { color: #e67e22; }
+        .course-link.python { color: #2ecc71; }
+        .course-link.bash { color: #9b59b6; }
     </style>
 </head>
 <body>
-    <div class="course-container">
-        <div class="course-card c" onclick="showCourse('c')">
-            <h2>C Programming</h2>
-            <p>System programming and low-level development</p>
-        </div>
-
-        <div class="course-card linux" onclick="showCourse('linux')">
-            <h2>Linux Administration</h2>
-            <p>System management and server administration</p>
-        </div>
-
-        <div class="course-card python" onclick="showCourse('python')">
-            <h2>Python Programming</h2>
-            <p>Scripting and application development</p>
-        </div>
-
-        <div class="course-card bash" onclick="showCourse('bash')">
-            <h2>Bash Scripting</h2>
-            <p>Shell scripting and automation</p>
-        </div>
+    <div class="course-links">
+        <a href="#" class="course-link c" onclick="showCourse('c', event)">C Programming</a>
+        <a href="#" class="course-link linux" onclick="showCourse('linux', event)">Linux Administration</a>
+        <a href="#" class="course-link python" onclick="showCourse('python', event)">Python Programming</a>
+        <a href="#" class="course-link bash" onclick="showCourse('bash', event)">Bash Scripting</a>
     </div>
 
     <div id="courseModal" class="modal">
@@ -114,72 +93,75 @@
             c: {
                 title: "C Programming",
                 content: `
-                    <h3>Course Highlights</h3>
+                    <h3>Key Concepts</h3>
                     <ul>
-                        <li>Memory management</li>
-                        <li>Pointers and data structures</li>
+                        <li>Pointers and memory management</li>
+                        <li>Data structures and algorithms</li>
                         <li>File I/O operations</li>
-                        <li>Multithreading</li>
+                        <li>Multi-threading</li>
                     </ul>
                     <pre><code>#include &lt;stdio.h&gt;
 
 int main() {
-    printf("Hello, World!");
+    // Print Hello World
+    printf("Hello, C Programmers!");
     return 0;
 }</code></pre>`
             },
             linux: {
                 title: "Linux Administration",
                 content: `
-                    <h3>Key Topics</h3>
+                    <h3>Essential Skills</h3>
                     <ul>
                         <li>User and permission management</li>
-                        <li>Package management (apt/yum)</li>
                         <li>Network configuration</li>
-                        <li>Service management (systemd)</li>
+                        <li>Package management</li>
+                        <li>Shell scripting</li>
                     </ul>
-                    <pre># Update package list
-sudo apt update
+                    <pre># Check disk usage
+df -h
 
-# Install nginx
-sudo apt install nginx</pre>`
+# Restart service
+sudo systemctl restart nginx</pre>`
             },
             python: {
                 title: "Python Programming",
                 content: `
-                    <h3>Core Concepts</h3>
+                    <h3>Core Topics</h3>
                     <ul>
                         <li>Object-oriented programming</li>
-                        <li>Web development (Django/Flask)</li>
+                        <li>Web frameworks (Django/Flask)</li>
                         <li>Data analysis (Pandas)</li>
                         <li>Automation scripts</li>
                     </ul>
-                    <pre># Fibonacci sequence
-def fib(n):
-    a, b = 0, 1
-    while a < n:
-        print(a, end=' ')
-        a, b = b, a+b
-fib(1000)</pre>`
+                    <pre># List comprehension
+squares = [x**2 for x in range(10)]
+print(squares)</pre>`
             },
             bash: {
                 title: "Bash Scripting",
                 content: `
-                    <h3>Essential Skills</h3>
+                    <h3>Key Components</h3>
                     <ul>
-                        <li>Shell commands</li>
-                        <li>Script automation</li>
-                        <li>Cron jobs</li>
-                        <li>System monitoring</li>
+                        <li>Command-line automation</li>
+                        <li>Conditional statements</li>
+                        <li>Loop structures</li>
+                        <li>Process management</li>
                     </ul>
                     <pre>#!/bin/bash
 
-# Backup script
-tar -czf backup-$(date +%Y-%m-%d).tar.gz /path/to/directory</pre>`
+# Simple countdown
+for i in {5..1}
+do
+    echo "$i..."
+    sleep 1
+done
+echo "Liftoff!"</pre>`
             }
         };
 
-        function showCourse(courseId) {
+        function showCourse(courseId, event) {
+            event.preventDefault();
             const modal = document.getElementById('courseModal');
             const {title, content} = courseContent[courseId];
             
