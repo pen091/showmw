@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Courses</title>
+    <style>
+        .course-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .course-card {
+            background: #2c3e50;
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            animation: modalFade 0.3s;
+        }
+
+        .modal-content {
+            background: #34495e;
+            color: white;
+            margin: 10% auto;
+            padding: 30px;
+            width: 80%;
+            max-width: 700px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 15px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #ecf0f1;
+        }
+
+        .modal-body pre {
+            background: #2c3e50;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .course-card.c { background: #3498db; }
+        .course-card.linux { background: #e67e22; }
+        .course-card.python { background: #2ecc71; }
+        .course-card.bash { background: #9b59b6; }
+
+        @keyframes modalFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="course-container">
+        <div class="course-card c" onclick="showCourse('c')">
+            <h2>C Programming</h2>
+            <p>System programming and low-level development</p>
+        </div>
+
+        <div class="course-card linux" onclick="showCourse('linux')">
+            <h2>Linux Administration</h2>
+            <p>System management and server administration</p>
+        </div>
+
+        <div class="course-card python" onclick="showCourse('python')">
+            <h2>Python Programming</h2>
+            <p>Scripting and application development</p>
+        </div>
+
+        <div class="course-card bash" onclick="showCourse('bash')">
+            <h2>Bash Scripting</h2>
+            <p>Shell scripting and automation</p>
+        </div>
+    </div>
+
+    <div id="courseModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div class="modal-body" id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        const courseContent = {
+            c: {
+                title: "C Programming",
+                content: `
+                    <h3>Course Highlights</h3>
+                    <ul>
+                        <li>Memory management</li>
+                        <li>Pointers and data structures</li>
+                        <li>File I/O operations</li>
+                        <li>Multithreading</li>
+                    </ul>
+                    <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Hello, World!");
+    return 0;
+}</code></pre>`
+            },
+            linux: {
+                title: "Linux Administration",
+                content: `
+                    <h3>Key Topics</h3>
+                    <ul>
+                        <li>User and permission management</li>
+                        <li>Package management (apt/yum)</li>
+                        <li>Network configuration</li>
+                        <li>Service management (systemd)</li>
+                    </ul>
+                    <pre># Update package list
+sudo apt update
+
+# Install nginx
+sudo apt install nginx</pre>`
+            },
+            python: {
+                title: "Python Programming",
+                content: `
+                    <h3>Core Concepts</h3>
+                    <ul>
+                        <li>Object-oriented programming</li>
+                        <li>Web development (Django/Flask)</li>
+                        <li>Data analysis (Pandas)</li>
+                        <li>Automation scripts</li>
+                    </ul>
+                    <pre># Fibonacci sequence
+def fib(n):
+    a, b = 0, 1
+    while a < n:
+        print(a, end=' ')
+        a, b = b, a+b
+fib(1000)</pre>`
+            },
+            bash: {
+                title: "Bash Scripting",
+                content: `
+                    <h3>Essential Skills</h3>
+                    <ul>
+                        <li>Shell commands</li>
+                        <li>Script automation</li>
+                        <li>Cron jobs</li>
+                        <li>System monitoring</li>
+                    </ul>
+                    <pre>#!/bin/bash
+
+# Backup script
+tar -czf backup-$(date +%Y-%m-%d).tar.gz /path/to/directory</pre>`
+            }
+        };
+
+        function showCourse(courseId) {
+            const modal = document.getElementById('courseModal');
+            const {title, content} = courseContent[courseId];
+            
+            document.getElementById('modalTitle').innerHTML = title;
+            document.getElementById('modalContent').innerHTML = content;
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('courseModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('courseModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Close with ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
